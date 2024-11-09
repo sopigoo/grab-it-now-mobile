@@ -178,4 +178,79 @@ Perbedaan antara `const` dan `final` adalah `const` konstan pada saat *compile-t
     }
     ```
 
-</summary>
+</details>
+
+<details>
+<summary>Tugas 8</summary>
+
+## 1.  Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan `const` pada kode Flutter. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?
+Di Flutter, `const` digunakan untuk membuat objek yang bersifat *immutable* dan disimpan dalam memori sebagai *compile-time constant*. 
+
+Keuntungan dari menggunakan `const` adalah:
+- Efisiensi memori: objek yang dideklarasikan sebagai `const` akan dibuat hanya sekali dan disimpan dalam cache, sehingga dapat digunakan kembali.
+- Kinerja lebih baik: karena bersifat immutable, Flutter dapat melakukan optimasi sehingga aplikasi berjalan lebih cepat.
+- Stabilitas: ojek `const` tidak dapat diubah setelah dideklarasikan sehingga mengurangi potensi kesalahan karena perubahan yang tidak terduga.
+
+`const` sebaiknya digunakan pada widget atau objek yang tidak berubah atau untuk widget yang akan ditampilkan berulang kali tanpa perubahan. `const` sebaiknya tidak digunakan pada objek atau widget yang dinamis atau ketika nilainya bergantung pada variabel yang berubah.
+
+## 2. Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+`Column` dan `Row` adalah widget layout di Flutter yang digunakan untuk mengatur posisi widget secara vertikal atau horizontal.
+- `Column` digunakan untuk mengatur widget secara vertikal. Widget ini berguna untuk menampilkan elemen dalam satu kolom, seperti daftar teks atau tombol yang disusun vertikal.
+Contoh implementasi Column:
+```dart
+Column(
+  children: [
+    Text("Item 1"),
+    Text("Item 2"),
+    ElevatedButton(onPressed: () {}, child: Text("Button")),
+  ],
+)
+```
+- `Row` digunakan untuk mengatur widget secara horizontal. Widget ini digunakan untuk menampilkan elemen dalam satu baris, seperti ikon dan teks yang sejajar.
+Contoh implementasi Row:
+```dart
+Row(
+  children: [
+    Icon(Icons.star),
+    Text("Rating"),
+    Text("5.0"),
+  ],
+)
+```
+
+## 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+Pada halaman form yang saya buat, elemen input yang saya gunakan antara lain:
+- TextFormField: untuk menerima input teks.
+- ElevatedButton: untuk tombol submit data pada form.
+Elemen input yang tidak saya gunakan:
+- Checkbox: untuk pilihan ya/tidak.
+- DropdownButton: untuk memilih salah satu opsi dari beberapa pilihan.
+- Slider: untuk memilih nilai pada rentang tertentu.
+- Switch: untuk memilih anatar on/off.
+
+## 4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+Untuk mengatur tema dalam Flutter, kita dapat menggunakan `ThemeData` di properti `theme` dari `MaterialApp`. `ThemeData` memungkinkan kita untuk mengatur gaya seperti pengaturan warna, font, button, dan beberapa hal lain agar konsisten pada keseluruhan aplikasi. Pengaturan tema ini berada pada file `main.dart`
+```dart
+theme: ThemeData(
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    primary: const Color(0xFF789395),
+    secondary: const Color(0xFF94B49F),
+  ),
+  useMaterial3: true,
+),
+```
+
+## 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Untuk menangani navigasi pada aplikasi Flutter dengan banyak halaman, saya menggunakan `Navigator` untuk berpindah antar halaman. Dengan `Navigator`, kita bisa melakukan *push* untuk menambahkan halaman baru pada stack dan membuka halaman baru tersebut, *pop* untuk kembali ke halaman sebelumnya, atau *pushReplacement* untuk menghapus halaman yang ada pada stack dan mengganti ke halaman baru yang ingin ditambahkan.
+Navigasi juga didukung dengan adanya *Drawer*, baik pada sisi kiri ataupun kanan layar, yang berfungsi untuk memudahkan pengguna dalam mengakses halaman-halaman yang ada pada aplikasi.
+Contoh implementasi:
+```dart
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => const ProductEntryFormPage(),
+  )
+);
+```
+
+</details>
